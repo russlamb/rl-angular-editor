@@ -1,0 +1,21 @@
+ <mat-toolbar color="primary" class="fixed-header" flex>
+  Navigation Example
+  </mat-toolbar>
+
+
+<mat-sidenav-container  >
+  
+  <mat-sidenav #sidenav mode="side" opened> 
+    <mat-list >
+      <mat-list-item *ngFor="let tab of tabs">
+        <button mat-button aria-label="sidebar icon">
+          <mat-icon>{{tab.icon}}</mat-icon>
+          {{tab.name}}
+        </button>
+      </mat-list-item>
+    </mat-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-assets></app-assets>
+  </mat-sidenav-content>
+</mat-sidenav-container>
