@@ -88,7 +88,7 @@ export class AccountsComponent implements OnInit {
     dialogRef.afterClosed().subscribe(result=>{
       console.log({'Dialog closed':result}); // log result to console for debugging
       this.dialogAccount = result; // set data on this component based on the data returned from the dialog
-      this.status = "You added "+result; // set status text in this component
+      this.status = "You added "+JSON.stringify(result); // set status text in this component
       this.accountService.insertItem(this.dialogAccount);// insert to data source via service
       this.refreshData(null); // refresh the grid data from service 
       setTimeout(()=>{this.status="";},STATUS_RESET_TIME); // remove status after a few seconds      

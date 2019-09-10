@@ -1,14 +1,19 @@
-<h1 mat-dialog-title>Insert row</h1>
+<h1 mat-dialog-title>Add row</h1>
 <div mat-dialog-content>
-  <p>Enter data</p>
   <mat-form-field>
     
-    <input matInput placeholder="Account Name" [(ngModel)]="data.name">
-    <input matInput placeholder="Account Number" [(ngModel)]="data.number">
-    <input matInput placeholder="Custodian Account" [(ngModel)]="data.custodian">
+    <input matInput placeholder="Account Name" [(ngModel)]="data.AcctName">
+    
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Account Number" [(ngModel)]="data.AcctNum">
+    
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Custodian Account" [(ngModel)]="data.CstAcct">
   </mat-form-field>
 </div>
 <div>
   <button mat-button (click)="onCancel()">Cancel</button>
-  <button mat-button [mat-dialog-close]="data.name" cdkFocusInitial>Save</button>
+  <button mat-button [mat-dialog-close]="data" cdkFocusInitial>Save</button>
 </div>
