@@ -24,6 +24,8 @@ import { AssetsComponent } from './assets/assets.component';
 import { ContainerComponent } from './container/container.component';
 import { AssetDialogComponent } from './asset-dialog/asset-dialog.component';
 import { AccountService } from './account.service';
+import { AccountsComponent } from './accounts/accounts.component';
+import { AccountDialogComponent } from './account-dialog/account-dialog.component';
 
 
 @NgModule({
@@ -37,11 +39,12 @@ import { AccountService } from './account.service';
   , MatTabsModule
   , AgGridModule.withComponents([])
   ],
-  declarations: [ AppComponent, HelloComponent, ContainerComponent, AssetsComponent, AssetDialogComponent ],
+  declarations: [ AppComponent, HelloComponent, ContainerComponent, AssetsComponent, AssetDialogComponent, AccountsComponent, AccountDialogComponent ],
   bootstrap:    [ AppComponent ],
   providers: [AssetService, AccountService],
-  entryComponents: [
-    AssetDialogComponent
+  entryComponents: [  // any dialog component needs to be entered here
+    AssetDialogComponent,
+    AccountDialogComponent
   ]
 })
 export class AppModule { }

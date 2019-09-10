@@ -1,0 +1,18 @@
+<button mat-raised-button color="accent" (click)="refreshData($event)">Refresh</button> 
+
+  <button mat-raised-button color="accent" (click)="insertData($event)">Insert</button>  
+  <button mat-raised-button color="accent" (click)="deleteData($event)">Delete</button>  <br>
+  <span>{{status}}</span>
+<ag-grid-angular 
+    style="width: 800px; height: 500px;" 
+    class="ag-theme-balham"
+    [rowData]="rowData" 
+    [columnDefs]="columnDefs"
+    (firstDataRendered) = "onFirstDataRender($event)"
+    rowSelection="multiple"
+    (gridReady)="onGridReady($event)"
+    [defaultColDef]="defaultColDef"
+    pagination="true"
+    paginationAutoPageSize=true 
+    >
+</ag-grid-angular>
