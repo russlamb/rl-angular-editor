@@ -24,7 +24,7 @@ export class AssetsComponent implements OnInit {
     sortable: true,
     resizable: true,
     onCellValueChanged: (params)=>{let data = params.data;
-                          this.assetService.updateAsset(data);}
+                          this.dataService.updateAsset(data);}
   };
 
   //local properties
@@ -34,14 +34,14 @@ export class AssetsComponent implements OnInit {
   private gridApi;
 
   constructor( // pass services here
-    private assetService: AssetService,  // data service
+    private dataService: AssetService,  // data service
     public dialog: MatDialog // dialog service
   ) { }
   /**
    * Initialize the component
    */
   ngOnInit() {
-    this.rowData = this.assetService.getAssets(); //get row data from service    
+    this.rowData = this.dataService.getAssets(); //get row data from service    
   }
   /**
    * Grid callback function for when data is first populated.  
@@ -61,17 +61,11 @@ export class AssetsComponent implements OnInit {
    * This function forces a refresh of data from the service and populates grid.
    */
   refreshData(params) {
-    this.rowData = this.assetService.getAssets(); // get latest data
+    this.rowData = this.dataService.getAssets(); // get latest data
     this.gridApi.setRowData(this.rowData); //refresh grid
     console.log({"refreshed data":this.rowData});
   }
-  /**
-   * Grid callback function for when cell is edited
-   */
-  parseCellValue(params) {    
-    let data = params.data; // get data from event object
-    this.assetService.updateAsset(data); // call the service to update data on the back-end
-  }
+
   /**
    * Open dialog and get data to insert
    * this component subscribes to the afterClosed() event from the child component (dialog) to get the data
@@ -86,7 +80,7 @@ export class AssetsComponent implements OnInit {
       console.log({'Dialog closed':result}); // log result to console for debugging
       this.assetName = result; // set data on this component based on the data returned from the dialog
       this.status = "You added "+result; // set status text in this component
-      this.assetService.insertAsset(this.assetName);// insert to data source via service
+      this.dataService.insertAsset(this.assetName);// insert to data source via service
       this.refreshData(null); // refresh the grid data from service 
       setTimeout(()=>{this.status="";},STATUS_RESET_TIME); // remove status after a few seconds      
 
@@ -97,7 +91,7 @@ export class AssetsComponent implements OnInit {
     console.log("remove selected rows");
     let selectedRowData = this.gridApi.getSelectedRows();
     selectedRowData.forEach((value) => {      
-      this.assetService.deleteAsset(value);
+      this.dataService.deleteAsset(value);
     });  // remove from data source
     this.gridApi.updateRowData({remove:selectedRowData}); // update grid
   }
