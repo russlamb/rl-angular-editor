@@ -14,6 +14,8 @@ import {MatListModule} from '@angular/material/list';
 import {MatInputModule} from '@angular/material/input';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';
+import {MatTabsModule} from '@angular/material/tabs';
+
 // ag-grid module
 import { AgGridModule } from 'ag-grid-angular';
 import { AssetService } from './asset.service';
@@ -21,21 +23,23 @@ import { AssetService } from './asset.service';
 import { AssetsComponent } from './assets/assets.component';
 import { ContainerComponent } from './container/container.component';
 import { AssetDialogComponent } from './asset-dialog/asset-dialog.component';
+import { AccountService } from './account.service';
 
 
 @NgModule({
   imports:      [ BrowserModule, FormsModule, BrowserAnimationsModule , MatToolbarModule
   , MatSidenavModule
-  , MatButtonModule
+  , MatButtonModule 
   , MatListModule
   , MatInputModule
   , MatIconModule
   , MatDialogModule
+  , MatTabsModule
   , AgGridModule.withComponents([])
   ],
   declarations: [ AppComponent, HelloComponent, ContainerComponent, AssetsComponent, AssetDialogComponent ],
   bootstrap:    [ AppComponent ],
-  providers: [AssetService],
+  providers: [AssetService, AccountService],
   entryComponents: [
     AssetDialogComponent
   ]

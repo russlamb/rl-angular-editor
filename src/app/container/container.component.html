@@ -2,20 +2,18 @@
   Navigation Example
   </mat-toolbar>
 
-
-<mat-sidenav-container  >
-  
-  <mat-sidenav #sidenav mode="side" opened> 
-    <mat-list >
-      <mat-list-item *ngFor="let tab of tabs">
-        <button mat-button aria-label="sidebar icon">
-          <mat-icon>{{tab.icon}}</mat-icon>
-          {{tab.name}}
-        </button>
-      </mat-list-item>
-    </mat-list>
-  </mat-sidenav>
-  <mat-sidenav-content>
+<mat-tab-group>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style=" margin-right: 8px;">folder</mat-icon>
+      Assets
+    </ng-template>
     <app-assets></app-assets>
-  </mat-sidenav-content>
-</mat-sidenav-container>
+  </mat-tab>
+  <mat-tab>
+    <ng-template mat-tab-label>
+      <mat-icon style=" margin-right: 8px;">folder</mat-icon>
+      Accounts
+    </ng-template>
+  </mat-tab>
+</mat-tab-group>
