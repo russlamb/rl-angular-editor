@@ -28,7 +28,7 @@ export class AccountsComponent implements OnInit {
     resizable: true,
     // **** UPDATE METHOD
     onCellValueChanged: (params)=>{let data = params.data;
-                          this.accountService.updateItem(data);}
+                          this.dataService.updateItem(data);}
   };
 
 
@@ -42,7 +42,7 @@ export class AccountsComponent implements OnInit {
   // **** CONSTRUCTOR AND INIT
   constructor(
     // pass services here
-    private accountService: AccountService,  // data service
+    private dataService: AccountService,  // data service
     public dialog: MatDialog // dialog service
   ) { }
 
@@ -50,7 +50,7 @@ export class AccountsComponent implements OnInit {
    * Initialize the component
    */
   ngOnInit() {
-    this.rowData = this.accountService.getItems(); //get row data from service    
+    this.rowData = this.dataService.getItems(); //get row data from service    
   }
   /**
    * Grid callback function for when data is first populated.  
@@ -70,7 +70,7 @@ export class AccountsComponent implements OnInit {
    * This function forces a refresh of data from the service and populates grid.
    */
   refreshData(params) {
-    this.rowData = this.accountService.getItems(); // get latest data
+    this.rowData = this.dataService.getItems(); // get latest data
     this.gridApi.setRowData(this.rowData); //refresh grid
     console.log({"refreshed data":this.rowData});
   }
@@ -89,7 +89,7 @@ export class AccountsComponent implements OnInit {
       console.log({'Dialog closed':result}); // log result to console for debugging
       this.dialogAccount = result; // set data on this component based on the data returned from the dialog
       this.status = "You added "+JSON.stringify(result); // set status text in this component
-      this.accountService.insertItem(this.dialogAccount);// insert to data source via service
+      this.dataService.insertItem(this.dialogAccount);// insert to data source via service
       this.refreshData(null); // refresh the grid data from service 
       setTimeout(()=>{this.status="";},STATUS_RESET_TIME); // remove status after a few seconds      
 
@@ -100,7 +100,7 @@ export class AccountsComponent implements OnInit {
     console.log("remove selected rows");
     let selectedRowData = this.gridApi.getSelectedRows();
     selectedRowData.forEach((value) => {      
-      this.accountService.deleteItem(value);
+      this.dataService.deleteItem(value);
     });  // remove from data source
     this.gridApi.updateRowData({remove:selectedRowData}); // update grid
   }
