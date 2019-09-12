@@ -10,7 +10,7 @@ import {MatDialogRef, MAT_DIALOG_DATA} from '@angular/material/dialog';
 export class AccountDialogComponent implements OnInit {
 
   constructor( 
-    public dialogRef: MatDialogRef<AssetDialogComponent>,
+    public dialogRef: MatDialogRef<AccountDialogComponent>,
     @Inject(MAT_DIALOG_DATA) public data
     ) { }
 
